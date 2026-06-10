@@ -33,7 +33,7 @@ OF_USE_GREEN_LED := 0
 OF_QUICK_BACKUP_LIST := /boot;/data;
 OF_ENABLE_LPTOOLS := 1
 OF_NO_TREBLE_COMPATIBILITY_CHECK := 1
-OF_DYNAMIC_FULL_SIZE := 9122611200
+OF_DYNAMIC_FULL_SIZE := 11811160064
 
 # number of list options before scrollbar creation
 OF_OPTIONS_LIST_NUM := 9
@@ -95,3 +95,4 @@ OF_ENABLE_FRP_ADDON := 1
 
 # Set to 1 to force the casefolding props to true. Useful for devices that shipped with Android 11+/FBEv2, where casefolding is always used
 OF_FORCE_CASEFOLDING := 1
+TW_CUSTOM_CPU_TEMP_PATH := /tmp/cpu_temp
