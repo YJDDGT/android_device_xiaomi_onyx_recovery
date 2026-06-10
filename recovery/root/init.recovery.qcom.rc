@@ -47,11 +47,15 @@ on fs
     mkdir /mnt/vendor/persist 0775 shell system
     mkdir /tmp/persist 0775 shell system
     mount none /tmp/persist /mnt/vendor/persist bind rec
+    mkdir /firmware
+    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
+    write /sys/module/firmware_class/parameters/path /firmware/image
     install_keyring
 
 on init
     start vendor.boot-qti
     setprop prepdecrypt.setpatch true
+    write /tmp/cpu_temp "0"
 
 # potential workaround for HyperOS ROMs where 'crypto.ready' isn't set early enough by prepdecrypt.sh (causing decryption failure on flashed recovery,
 # while being successful on hot-booted recovery). It can be set anywhere (init, boot, post-fs, etc) - here we set it as late as possible, to avoid new
@@ -63,20 +67,18 @@ on boot
     setprop sys.usb.config adb
 
 on post-fs-data
-    mkdir /odm/firmware/o10u
-    symlink /vendor/firmware /odm/firmware/o10u/
+    mkdir /odm/firmware/o10u -p
+    symlink /firmware/image /odm/firmware/o10u/image
+    symlink /firmware/image/adsp.mdt /odm/firmware/o10u/adsp.mdt
 
 on property:twrp.modules.loaded=true
-    # Mount firmware
-    mkdir /firmware
-    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
     # Load ADSP firmware for PMIC
+    write /sys/class/remoteproc/remoteproc0/state start
     wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
     wait /sys/class/power_supply/battery
     start vendor.qseecomd
     start vendor.health-recovery
-    umount /firmware
 
 on property:ro.crypto.state=encrypted && property:ro.boot.dynamic_partitions=true
     start prepdecrypt.vendor
