@@ -56,6 +56,15 @@ if [ "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_SETTINGS_ROOT_DIRECTORY="/persist"
 	export FOX_MAINTAINER_PATCH_VERSION="$(date +%Y%m%d%H%M)"
 	export FOX_ALLOW_EARLY_SETTINGS_LOAD=1
+	
+	# Disable OrangeFox settings reset during zip flash
+	export FOX_RESET_SETTINGS="disabled"
+	
+	# Specify the exact path to the recovery partition so A/B zip installer stops patching boot!
+	export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/bootdevice/by-name/recovery"
+	
+	# Disable auto-reboot to allow TWRP to save volatile settings properly
+	export FOX_INSTALLER_DISABLE_AUTOREBOOT="1"
 else
 	echo "I: vendorsetup.sh skipped; device mismatch or environment issue."
 fi
