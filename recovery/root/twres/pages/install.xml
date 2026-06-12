@@ -76,6 +76,10 @@
 					<condition var1="tw_has_injecttwrp" var2="1"/>
 					<data variable="tw_inject_after_zip"/>
 				</listitem>
+				<listitem name="{@auto_dfe_chk}">
+					<condition var1="fileexists" var2="/FFiles/DFE.zip"/>
+					<data variable="tw_auto_dfe"/>
+				</listitem>
 			</listbox>
 
 			<button style="btn_raised">
@@ -685,7 +689,30 @@
 		</page>
 
 		<page name="flash_done">
-			<template name="base_done"/>
+			<template name="base_ex"/>
+			
+			<text style="text_ab_title">
+				<condition var1="tw_operation_status" op="!=" var2="0"/>
+				<placement x="%col1_x%" y="%row1_2_y%" placement="2"/>
+				<text>{@failed}</text>
+			</text>
+
+			<text style="text_ab_title">
+				<condition var1="tw_operation_status" var2="0"/>
+				<placement x="%col1_x%" y="%row1_2_y%" placement="2"/>
+				<text>{@successful}</text>
+			</text>
+
+			<console>
+				<placement x="%col1_x%" y="%console_y%" w="%console_width%" h="%console_action_height%"/> 
+				<condition var1="use_fixed_font" var2="0"/>
+			</console>
+			
+			<console>
+				<placement x="%col1_x%" y="%console_y%" w="%console_width%" h="%console_action_height%"/> 
+				<condition var1="use_fixed_font" var2="1"/>
+				<font resource="fixed"/>
+			</console>
 
 			<text style="text_ab_title">
 				<placement x="%col1_x_indent%" y="%ab_bc_y%"/>
@@ -697,8 +724,8 @@
 				<text>%tw_zip_index% {@of} %qcount_temp%</text>
 			</text>
 
-			<button style="btn_raised">
-				<placement x="%btn_raised_left_x%" y="%row_btn1_y%"/>
+			<button style="btn_raised_s">
+				<placement x="40" y="%row_btn1_y%"/>
 				<text>{@wipe_cache_btn}</text>
 				<action function="disableled"/>
 				<action function="set">tw_back=flash_done</action>
@@ -712,6 +739,23 @@
 				<action function="set">tw_complete_text1={@wipe_cache_dalvik_complete}</action>
 				<action function="set">tw_slider_text={@swipe_wipe}</action>
 				<action function="page">confirm_action</action>
+			</button>
+
+			<button style="btn_raised_s">
+				<placement x="380" y="%row_btn1_y%"/>
+				<text>{@reboot_recovery_btn}</text>
+				<action function="set">tw_back=main</action>
+				<action function="set">tw_action_param=recovery</action>
+				<action function="page">rebootcheck</action>
+			</button>
+
+			<button style="btn_raised_s_hl">
+				<condition var1="tw_reboot_system" var2="1"/>
+				<placement x="720" y="%row_btn1_y%"/>
+				<text>{@reboot_system_btn}</text>
+				<action function="set">tw_back=main</action>
+				<action function="set">tw_action_param=system</action>
+				<action function="page">rebootcheck</action>
 			</button>
 
 			<action>
@@ -785,7 +829,30 @@
 		</page>
 
 		<page name="flash_image_done">
-			<template name="base_done"/>
+			<template name="base_ex"/>
+			
+			<text style="text_ab_title">
+				<condition var1="tw_operation_status" op="!=" var2="0"/>
+				<placement x="%col1_x%" y="%row1_2_y%" placement="2"/>
+				<text>{@failed}</text>
+			</text>
+
+			<text style="text_ab_title">
+				<condition var1="tw_operation_status" var2="0"/>
+				<placement x="%col1_x%" y="%row1_2_y%" placement="2"/>
+				<text>{@successful}</text>
+			</text>
+
+			<console>
+				<placement x="%col1_x%" y="%console_y%" w="%console_width%" h="%console_action_height%"/> 
+				<condition var1="use_fixed_font" var2="0"/>
+			</console>
+			
+			<console>
+				<placement x="%col1_x%" y="%console_y%" w="%console_width%" h="%console_action_height%"/> 
+				<condition var1="use_fixed_font" var2="1"/>
+				<font resource="fixed"/>
+			</console>
 
 			<text style="text_ab_title">
 				<placement x="%col1_x_indent%" y="%ab_bc_y%"/>
@@ -797,12 +864,37 @@
 				<text>{@image_flashed}</text>
 			</text>
 
-			<button style="btn_raised">
-				<condition var1="tw_reboot_recovery" var2="1"/>
-				<placement x="%btn_raised_left_x%" y="%row_btn1_y%"/>
+			<button style="btn_raised_s">
+				<placement x="40" y="%row_btn1_y%"/>
+				<text>{@wipe_cache_btn}</text>
+				<action function="disableled"/>
+				<action function="set">tw_back=flash_done</action>
+				<action function="set">tw_action=wipe</action>
+				<action function="set">tw_action_param=/cache</action>
+				<action function="set">tw_has_action2=1</action>
+				<action function="set">tw_action2=wipe</action>
+				<action function="set">tw_action2_param=dalvik</action>
+				<action function="set">tw_text1={@wipe_cache_dalvik_confirm}</action>
+				<action function="set">tw_action_text1={@wiping_cache_dalvik}</action>
+				<action function="set">tw_complete_text1={@wipe_cache_dalvik_complete}</action>
+				<action function="set">tw_slider_text={@swipe_wipe}</action>
+				<action function="page">confirm_action</action>
+			</button>
+
+			<button style="btn_raised_s">
+				<placement x="380" y="%row_btn1_y%"/>
 				<text>{@reboot_recovery_btn}</text>
 				<action function="set">tw_back=main</action>
 				<action function="set">tw_action_param=recovery</action>
+				<action function="page">rebootcheck</action>
+			</button>
+
+			<button style="btn_raised_s_hl">
+				<condition var1="tw_reboot_system" var2="1"/>
+				<placement x="720" y="%row_btn1_y%"/>
+				<text>{@reboot_system_btn}</text>
+				<action function="set">tw_back=main</action>
+				<action function="set">tw_action_param=system</action>
 				<action function="page">rebootcheck</action>
 			</button>
 
