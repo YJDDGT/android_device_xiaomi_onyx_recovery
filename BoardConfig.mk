@@ -89,6 +89,12 @@ AB_OTA_PARTITIONS += \
 # Verified Boot
 BOARD_AVB_ENABLE := true
 
+# Auto-disable AVB2 verification after ROM flash
+# Without this, ROM writes fresh vbmeta with verification ON,
+# but DFE modifies vendor_boot → verified boot fails → fastboot!
+# NOTE: orangefox.mk checks `ifeq ($(OF_SUPPORT_VBMETA_AVB2_PATCHING),1)` — must be 1!
+OF_SUPPORT_VBMETA_AVB2_PATCHING := 1
+
 # Partitions
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 
