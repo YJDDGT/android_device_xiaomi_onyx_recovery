@@ -72,7 +72,8 @@ OF_USE_LOCKSCREEN_BUTTON := 1
 OF_USE_DMCTL := 1
 
 # Use this to change the default time zone
-OF_DEFAULT_TIMEZONE := GMT0;BST,M3.5.0,M10.5.0
+# WIB-7 = Western Indonesia Time (UTC+7), POSIX format: negative = east of GMT
+OF_DEFAULT_TIMEZONE := WIB-7
 
 # Set this to 1 to avoid the new 'NO KERNEL CONFIG' error, when using a prebuilt kernel
 OF_FORCE_PREBUILT_KERNEL := 1
