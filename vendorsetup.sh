@@ -70,6 +70,10 @@ if [ "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# Without this, ROM writes fresh vbmeta with verification ON,
 	# DFE modifies vendor_boot → verified boot fails → fastboot!
 	export OF_SUPPORT_VBMETA_AVB2_PATCHING=1
+
+	# Use MiSans font to display Chinese language translations correctly
+	# (adds ~11MB to recovery image; requires sufficient partition space)
+	export FOX_USE_MISANS_FONTS=1
 else
 	echo "I: vendorsetup.sh skipped; device mismatch or environment issue."
 fi
