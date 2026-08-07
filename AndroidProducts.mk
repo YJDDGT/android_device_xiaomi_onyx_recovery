@@ -19,8 +19,5 @@
 
 PRODUCT_MAKEFILES := $(LOCAL_DIR)/twrp_onyx.mk
 
-COMMON_LUNCH_CHOICES := \
-    twrp_onyx-user \
-    twrp_onyx-userdebug \
-    twrp_onyx-eng
+COMMON_LUNCH_CHOICES := twrp_onyx-ap2a-eng
 #
