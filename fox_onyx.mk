@@ -96,6 +96,4 @@ OF_ENABLE_FRP_ADDON := 1
 
 # Set to 1 to force the casefolding props to true. Useful for devices that shipped with Android 11+/FBEv2, where casefolding is always used
 OF_FORCE_CASEFOLDING := 1
-# Use dynamic CPU temp symlink set up by runatboot.sh
-# runatboot.sh scans thermal_zone* for cpu_therm and symlinks to /tmp/cpu_temp
-TW_CUSTOM_CPU_TEMP_PATH := /tmp/cpu_temp
+# CPU temp set in BoardConfig.mk to zone56 (actual cpu_therm on onyx/SM8735)

@@ -191,7 +191,7 @@ endif
 TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
 TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko panel_event_notifier.ko nt38771_touch.ko nxp-nci.ko xiaomi_touch.ko phy-msm-m31-eusb2.ko phy-msm-snps-eusb2.ko phy-msm-ssusb-qmp.ko repeater-qti-pmic-eusb2.ko wcd_usbss_i2c.ko dwc3-msm.ko xhci-sideband.ko repeater.ko phy-generic.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone48/temp"
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone56/temp"
 TW_BATTERY_SYSFS_WAIT_SECONDS := 6
 TW_VIRTUAL_AB_COMPRESSION := true
 TW_INCLUDE_LIBRESETPROP := true
