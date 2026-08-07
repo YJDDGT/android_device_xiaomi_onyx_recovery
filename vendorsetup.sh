@@ -71,6 +71,10 @@ if [ "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# DFE modifies vendor_boot -> verified boot fails -> fastboot!
 	export OF_SUPPORT_VBMETA_AVB2_PATCHING=1
 
+	# Use magiskboot for boot image operations (matches original working build)
+	export OF_USE_MAGISKBOOT=1
+	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
+
 	# Use MiSans font to display Chinese language translations correctly
 	# (adds ~11MB to recovery image; requires sufficient partition space)
 	export FOX_USE_MISANS_FONTS=1

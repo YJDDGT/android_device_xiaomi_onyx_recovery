@@ -53,12 +53,9 @@ on fs
     install_keyring
 
 on init
-    # Explicitly load touchscreen kernel modules (belt-and-suspenders with TW_LOAD_VENDOR_MODULES)
-    insmod /vendor/lib/modules/1.1/panel_event_notifier.ko
-    insmod /vendor/lib/modules/1.1/nt38771_touch.ko
-    insmod /vendor/lib/modules/1.1/xiaomi_touch.ko
     start vendor.boot-qti
     setprop prepdecrypt.setpatch true
+    write /tmp/cpu_temp "0"
 
 # potential workaround for HyperOS ROMs where 'crypto.ready' isn't set early enough by prepdecrypt.sh (causing decryption failure on flashed recovery,
 # while being successful on hot-booted recovery). It can be set anywhere (init, boot, post-fs, etc) - here we set it as late as possible, to avoid new
