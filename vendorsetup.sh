@@ -37,11 +37,6 @@ fi
 if [ "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	echo "Detected build device: $FOX_BUILD_DEVICE"
 
-	# Register lunch combos so `lunch twrp_onyx-eng` works
-	add_lunch_combo twrp_onyx-eng
-	add_lunch_combo twrp_onyx-userdebug
-	add_lunch_combo twrp_onyx-user
-
 # Review build flags with below links:
 # https://gitlab.com/OrangeFox/vendor/recovery/-/raw/fox_14.1/orangefox_build_vars.txt
 # https://gitlab.com/OrangeFox/bootable/Recovery/-/raw/fox_14.1/orangefox.mk
@@ -73,7 +68,7 @@ if [ "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 	# Auto-disable vbmeta AVB2 verification after ROM flash
 	# Without this, ROM writes fresh vbmeta with verification ON,
-	# DFE modifies vendor_boot → verified boot fails → fastboot!
+	# DFE modifies vendor_boot -> verified boot fails -> fastboot!
 	export OF_SUPPORT_VBMETA_AVB2_PATCHING=1
 
 	# Use MiSans font to display Chinese language translations correctly
