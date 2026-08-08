@@ -27,16 +27,13 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # some OrangeFox-specific settings
 $(call inherit-product, $(DEVICE_PATH)/fox_onyx.mk)
 
-PRODUCT_PACKAGES += \
-    bootctrl.xiaomi_sm8735.recovery \
-    android.hardware.boot@1.2-impl-qti.recovery
+PRODUCT_PACKAGES +=     bootctrl.xiaomi_sm8735.recovery     android.hardware.boot@1.2-impl-qti.recovery
 
 # API
-# Commented out - conflicts with TWRP 12.1 build system (BOARD_SYSTEMSDK_VERSIONS=32 vs 34)
-# PRODUCT_SHIPPING_API_LEVEL  := 34
-# PRODUCT_TARGET_VNDK_VERSION := 34
-# BOARD_SHIPPING_API_LEVEL := 34
-# SHIPPING_API_LEVEL := 34
+PRODUCT_SHIPPING_API_LEVEL  := 34
+PRODUCT_TARGET_VNDK_VERSION := 34
+BOARD_SHIPPING_API_LEVEL := 34
+SHIPPING_API_LEVEL := 34
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
