@@ -53,9 +53,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno825
 QCOM_BOARD_PLATFORMS += xiaomi_sm8735
 #BOARD_USES_QCOM_HARDWARE := true
 
-# Override to allow building with SDK 34 device tree on TWRP 12.1 source
-BOARD_SYSTEMSDK_VERSIONS := 34
-
 # Kernel
 BOARD_KERNEL_PAGESIZE         := 4096
 TARGET_KERNEL_ARCH            := arm64
@@ -74,7 +71,20 @@ BOARD_RAMDISK_USE_LZ4 := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 
 AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS +=     boot     init_boot     vendor_boot     dtbo     vbmeta     vbmeta_system     odm     product     system     system_ext     system_dlkm     vendor     vendor_dlkm
+AB_OTA_PARTITIONS += \
+    boot \
+    init_boot \
+    vendor_boot \
+    dtbo \
+    vbmeta \
+    vbmeta_system \
+    odm \
+    product \
+    system \
+    system_ext \
+    system_dlkm \
+    vendor \
+    vendor_dlkm
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
